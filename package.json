@@ -1,0 +1,22 @@
+{
+  "name": "react-node-app",
+  "version": "1.0.0",
+  "description": "Implementation of FSM React library running on React.js with Node backend",
+  "main": "index.js",
+  "engines": {
+    "node": "14.17.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "cstart": "concurrently \"node server/index.js\" \"cd client && yarn start\"",
+    "build": "cd client && npm install && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.2.1",
+    "express": "^4.17.1"
+  }
+}

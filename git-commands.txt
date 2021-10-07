@@ -1,0 +1,14 @@
+# initialize git and refer to newly created GitHub repository
+git init
+git remote add origin https://github.com/DeltaDe-Dirac/bigvu-app.git
+git branch -M main
+git push -u origin main
+
+# install client and server packages
+# server
+npm install
+# client
+yarn install
+
+# run both client and server
+npm run cstart
