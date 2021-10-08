@@ -22,7 +22,7 @@ const ImageSelector = ({ itemList }) => {
         <DropdownButton
           menuVariant="dark"
           variant="dark"
-          title="Dropdown"
+          title={itemList[listItem]}
           onSelect={(eventKey, e) => selectItem(eventKey, e)}
         >
           {itemList.map((item, index) => (

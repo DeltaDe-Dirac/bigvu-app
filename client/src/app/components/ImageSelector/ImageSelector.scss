@@ -1,9 +1,22 @@
 [class^="dropdown-menu"] .dropdown-item.active, [class^="dropdown-menu"] .dropdown-item:active {
-    background-color: #212529;
-    
+    background-color: initial;
+    color: greenyellow;
 }
 .input-group{
     width: 50%;
     min-width: 200px;
     margin: auto;
+}
+
+.form-control, .form-control:focus{
+    color: salmon;    
+    // margin-left: 10px;
+    background-color: #212529;   
+    border: 1px solid #ced4da;
+    border-left: 2px solid #ced4da;
+}
+
+.dropdown-toggle::after{
+    color: greenyellow;
+    margin-left: 50px;
 }

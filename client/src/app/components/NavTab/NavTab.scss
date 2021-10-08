@@ -7,3 +7,14 @@
     min-width: 200px;
     justify-content: center;
 }
+
+.nav-link{
+    color: #495057;
+
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    background-color: #212529;
+    color: deepskyblue;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
