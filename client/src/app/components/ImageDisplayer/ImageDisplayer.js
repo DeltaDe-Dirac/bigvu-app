@@ -1,4 +1,4 @@
-import "./ImageDisplayer.scss";
+import styles from "./ImageDisplayer.module.scss";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setImageLoaded, selectStatus } from "../../../features/gallery/gallerySlice";
@@ -9,12 +9,15 @@ const ImageDisplayer = ({ src }) => {
   const imageStatus = useSelector(selectStatus);
 
   return (
-    <Image
-      className={imageStatus === "loading" ? "hideImage" : ""}
-      src={src}
-      fluid
-      onLoad={() => dispatch(setImageLoaded())}
-    />
+    <>
+      <Image
+        className={imageStatus === "loading" ? styles.displayNone : ""}
+        src={src}
+        fluid
+        onLoad={() => dispatch(setImageLoaded())}
+      />
+      <div className={imageStatus === "loading" ? styles.loader : ""}></div>
+    </>
   );
 };
 
