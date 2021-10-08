@@ -1,14 +1,23 @@
 import "./ImageSelector.scss";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setImageSource } from "../../../features/gallery/gallerySlice";
 import { InputGroup, DropdownButton, Dropdown, FormControl } from "react-bootstrap";
 
 const ImageSelector = ({ itemList }) => {
-  const [listItem, setListItem] = useState(0);
+  const dispatch = useDispatch();
+  const [listItem, setListItem] = useState(-1);
   const [textInput, setTextInput] = useState("");
 
   const selectItem = (eventKey, e) => {
-    // console.log(eventKey, e);
     setListItem(Number(eventKey));
+
+    for (const i in itemList) {
+      if (i === eventKey) {
+        dispatch(setImageSource(itemList[i].value));
+        break;
+      }
+    }
   };
 
   const handleUserInput = (e) => {
@@ -22,7 +31,7 @@ const ImageSelector = ({ itemList }) => {
         <DropdownButton
           menuVariant="dark"
           variant="dark"
-          title={!itemList[listItem] ? "..." : itemList[listItem]}
+          title={!itemList[listItem] ? "Select" : itemList[listItem].name}
           onSelect={(eventKey, e) => selectItem(eventKey, e)}
         >
           {itemList.map((item, index) => (
@@ -31,7 +40,7 @@ const ImageSelector = ({ itemList }) => {
               eventKey={index}
               className={listItem === index ? "active" : ""}
             >
-              {item}
+              {item.name}
             </Dropdown.Item>
           ))}
         </DropdownButton>
