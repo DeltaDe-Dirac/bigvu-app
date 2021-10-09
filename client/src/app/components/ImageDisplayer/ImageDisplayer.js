@@ -11,12 +11,11 @@ const ImageDisplayer = ({ src, width, height, imgOffsetX, imgOffsetY }) => {
   const selectedItem = useSelector(selectIndex);
   const inputText = useSelector(selectUserText);
 
-  // --------------- FUNCTOINS ---------------
-  // --------------- FUNCTOINS ---------------
+  // --------------- FUNCTIONS ---------------
+  // --------------- FUNCTIONS ---------------
 
   // --------------- REACT HOOKS ---------------
   const memoizedCallback = useCallback(() => {
-    // console.log(canvasRef);
     let ctx = canvasRef.current.getContext("2d");
     // ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
 

@@ -10,7 +10,7 @@ const ImageSelector = ({ itemList }) => {
   const selectedItem = useSelector(selectIndex);
   const placeHolder = "Type your text here";
 
-  // --------------- FUNCTOINS ---------------
+  // --------------- FUNCTIONS ---------------
   const selectItem = (eventKey, e) => {
     const eventKeyNumber = Number(eventKey);
     if (selectedItem !== eventKeyNumber) {
@@ -24,13 +24,15 @@ const ImageSelector = ({ itemList }) => {
       }
     }
   };
+  // --------------- FUNCTIONS ---------------
 
+  // --------------- REACT HOOKS ---------------
   const memoizedCallback = useCallback(
     debounce((e) => {
       dispatch(setUserText(e.target.value));
     }, 300)
   );
-  // --------------- FUNCTOINS ---------------
+  // --------------- REACT HOOKS ---------------
 
   // --------------- DOCUMENT ---------------
   return (
