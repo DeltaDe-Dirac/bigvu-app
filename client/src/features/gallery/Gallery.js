@@ -10,6 +10,7 @@ export function Gallery() {
   const imageList = useSelector(selectImgList);
   const imageSource = useSelector(selectImgSrc);
   const dispatch = useDispatch();
+  const metrics = { imgWidth: 640, imgHeight: 360, imgOffsetX: 10, imgOffsetY: 10 };
 
   useEffect(() => {
     dispatch(getImageListAsync("https://bigvu-interviews-assets.s3.amazonaws.com/presenters.json"));
@@ -19,7 +20,13 @@ export function Gallery() {
     <>
       <NavTab></NavTab>
       <ImageSelector itemList={imageList}></ImageSelector>
-      <ImageDisplayer src={imageSource}></ImageDisplayer>
+      <ImageDisplayer
+        src={imageSource}
+        width={metrics.imgWidth}
+        height={metrics.imgHeight}
+        imgOffsetX={metrics.imgOffsetX}
+        imgOffsetY={metrics.imgOffsetY}
+      ></ImageDisplayer>
     </>
   );
 }

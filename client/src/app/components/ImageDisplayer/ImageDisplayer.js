@@ -23,16 +23,36 @@ const ImageDisplayer = ({ src, width, height, imgOffsetX, imgOffsetY }) => {
     const image = new Image();
     image.src = src;
     image.onload = () => {
-      ctx.drawImage(image, 10, 10);
-      ctx.font = "50px Arial";
-      ctx.fillText(inputText, 10, 100);
+      ctx.drawImage(image, imgOffsetX, imgOffsetY);
+      ctx.font = "50px Verdana, sans-serif";
+
+      const wordsArr = inputText.split(" ");
+      let line = "";
+      let yPos = 60;
+      const yStep = 60;
+
+      const linesArr = [];
+      wordsArr.forEach((word) => {
+        if (ctx.measureText(line + word + " ").width < width - imgOffsetX * 2) {
+          line += word + " ";
+        } else if (ctx.measureText(word).width < width - imgOffsetX * 2) {
+          linesArr.push(line);
+          line = word + " ";
+        }
+      });
+      linesArr.push(line);
+
+      linesArr.forEach((line) => {
+        if (yPos < height) {
+          ctx.fillText(line, imgOffsetX, yPos);
+          yPos += yStep;
+        }
+      });
+
       // ctx.textAlign = "center";
       dispatch(setImageLoaded());
     };
-
-    // console.log(ctx.measureText(text));
-    console.log("handleOnLoad");
-  }, [inputText, src, dispatch]);
+  }, [inputText, src, dispatch, width, height, imgOffsetX, imgOffsetY]);
 
   useEffect(() => {
     memoizedCallback();
@@ -48,8 +68,8 @@ const ImageDisplayer = ({ src, width, height, imgOffsetX, imgOffsetY }) => {
           className={
             imageStatus === "loading" || selectedItem === -1 ? styles.displayTransparent : styles.displayBlueCanvas
           }
-          width="640"
-          height="360"
+          width={width}
+          height={height}
         >
           Your browser does not support the HTML canvas tag.
         </canvas>

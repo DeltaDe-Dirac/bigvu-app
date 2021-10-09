@@ -13,7 +13,6 @@ const ImageSelector = ({ itemList }) => {
   // --------------- FUNCTOINS ---------------
   const selectItem = (eventKey, e) => {
     const eventKeyNumber = Number(eventKey);
-    // console.log(selectedItem, eventKeyNumber);
     if (selectedItem !== eventKeyNumber) {
       dispatch(setSelectedItem(eventKeyNumber));
 
@@ -28,7 +27,6 @@ const ImageSelector = ({ itemList }) => {
 
   const handleUserInput = (e) => {
     const text = e.target.value;
-    // console.log(text);
     setTextInput(text);
     dispatch(setUserText(text));
   };
