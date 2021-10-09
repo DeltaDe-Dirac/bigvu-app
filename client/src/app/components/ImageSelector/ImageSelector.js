@@ -1,14 +1,16 @@
 import "./ImageSelector.scss";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setImageSource, selectIndex, setSelectedItem } from "../../../features/gallery/gallerySlice";
+import { setImageSource, selectIndex, setSelectedItem, setUserText } from "../../../features/gallery/gallerySlice";
 import { InputGroup, DropdownButton, Dropdown, FormControl } from "react-bootstrap";
 
 const ImageSelector = ({ itemList }) => {
   const dispatch = useDispatch();
   const [textInput, setTextInput] = useState("");
   const selectedItem = useSelector(selectIndex);
+  const placeHolder = "Type your text here";
 
+  // --------------- FUNCTOINS ---------------
   const selectItem = (eventKey, e) => {
     const eventKeyNumber = Number(eventKey);
     // console.log(selectedItem, eventKeyNumber);
@@ -25,10 +27,14 @@ const ImageSelector = ({ itemList }) => {
   };
 
   const handleUserInput = (e) => {
-    // console.log(e.target.value);
-    setTextInput(e.target.value);
+    const text = e.target.value;
+    // console.log(text);
+    setTextInput(text);
+    dispatch(setUserText(text));
   };
+  // --------------- FUNCTOINS ---------------
 
+  // --------------- DOCUMENT ---------------
   return (
     <>
       <InputGroup className="mb-3">
@@ -48,10 +54,11 @@ const ImageSelector = ({ itemList }) => {
             </Dropdown.Item>
           ))}
         </DropdownButton>
-        <FormControl onChange={(e) => handleUserInput(e)} value={textInput} placeholder="Type your text here" />
+        <FormControl onChange={(e) => handleUserInput(e)} value={textInput} placeholder={placeHolder} />
       </InputGroup>
     </>
   );
 };
+// --------------- DOCUMENT ---------------
 
 export default ImageSelector;

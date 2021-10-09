@@ -7,6 +7,7 @@ const initialState = {
   status: "idle",
   message: "",
   imageSrc: "", //https://bigvu-interviews-assets.s3.amazonaws.com/images/Daisi.png
+  userText: "",
 };
 
 export const getImageListAsync = createAsyncThunk("gallery/fetchImageList", async (endpoint) => {
@@ -37,6 +38,9 @@ export const gallerySlice = createSlice({
     setSelectedItem: (state, action) => {
       state.itemIndex = action.payload;
     },
+    setUserText: (state, action) => {
+      state.userText = action.payload;
+    },
     increment: (state) => {
       state.value += 1;
     },
@@ -64,7 +68,8 @@ export const gallerySlice = createSlice({
   },
 });
 
-export const { increment, decrement, setImageLoaded, setImageSource, setSelectedItem } = gallerySlice.actions;
+export const { increment, decrement, setImageLoaded, setImageSource, setSelectedItem, setUserText } =
+  gallerySlice.actions;
 // ------------------------------------------------------------------------------------------
 
 // The function below is called a selector and allows us to select a value from
@@ -75,6 +80,7 @@ export const selectIndex = (state) => state.gallery.itemIndex;
 export const selectImgList = (state) => state.gallery.imageList;
 export const selectImgSrc = (state) => state.gallery.imageSrc;
 export const selectStatus = (state) => state.gallery.status;
+export const selectUserText = (state) => state.gallery.userText;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
