@@ -1,21 +1,25 @@
 import "./ImageSelector.scss";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setImageSource } from "../../../features/gallery/gallerySlice";
+import { useSelector, useDispatch } from "react-redux";
+import { setImageSource, selectIndex, setSelectedItem } from "../../../features/gallery/gallerySlice";
 import { InputGroup, DropdownButton, Dropdown, FormControl } from "react-bootstrap";
 
 const ImageSelector = ({ itemList }) => {
   const dispatch = useDispatch();
-  const [listItem, setListItem] = useState(-1);
   const [textInput, setTextInput] = useState("");
+  const selectedItem = useSelector(selectIndex);
 
   const selectItem = (eventKey, e) => {
-    setListItem(Number(eventKey));
+    const eventKeyNumber = Number(eventKey);
+    // console.log(selectedItem, eventKeyNumber);
+    if (selectedItem !== eventKeyNumber) {
+      dispatch(setSelectedItem(eventKeyNumber));
 
-    for (const i in itemList) {
-      if (i === eventKey) {
-        dispatch(setImageSource(itemList[i].value));
-        break;
+      for (const i in itemList) {
+        if (i === eventKey) {
+          dispatch(setImageSource(itemList[i].value));
+          break;
+        }
       }
     }
   };
@@ -31,20 +35,20 @@ const ImageSelector = ({ itemList }) => {
         <DropdownButton
           menuVariant="dark"
           variant="dark"
-          title={!itemList[listItem] ? "Select" : itemList[listItem].name}
+          title={!itemList[selectedItem] ? "Select" : itemList[selectedItem].name}
           onSelect={(eventKey, e) => selectItem(eventKey, e)}
         >
           {itemList.map((item, index) => (
             <Dropdown.Item
               key={`imageSelectorItem-${index}`}
               eventKey={index}
-              className={listItem === index ? "active" : ""}
+              className={selectedItem === index ? "active" : ""}
             >
               {item.name}
             </Dropdown.Item>
           ))}
         </DropdownButton>
-        <FormControl onChange={(e) => handleUserInput(e)} value={textInput} />
+        <FormControl onChange={(e) => handleUserInput(e)} value={textInput} placeholder="Type your text here" />
       </InputGroup>
     </>
   );

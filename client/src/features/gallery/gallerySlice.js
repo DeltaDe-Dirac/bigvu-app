@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   imageList: [],
   value: 0,
+  itemIndex: -1,
   status: "idle",
   message: "",
   imageSrc: "", //https://bigvu-interviews-assets.s3.amazonaws.com/images/Daisi.png
@@ -33,6 +34,9 @@ export const gallerySlice = createSlice({
     setImageLoaded: (state) => {
       state.status = "idle";
     },
+    setSelectedItem: (state, action) => {
+      state.itemIndex = action.payload;
+    },
     increment: (state) => {
       state.value += 1;
     },
@@ -51,9 +55,7 @@ export const gallerySlice = createSlice({
         state.status = "idle";
         state.value += 2;
         if (Array.isArray(action.payload)) {
-          // console.log(JSON.stringify(action.payload));
           state.imageList = action.payload;
-          // action.payload.forEach((obj) => state.imageList.set(obj.name, obj.value));
         } else if (action.payload.message) {
           console.warn(action.payload.message);
           state.message = action.payload.message;
@@ -62,13 +64,14 @@ export const gallerySlice = createSlice({
   },
 });
 
-export const { increment, decrement, setImageLoaded, setImageSource } = gallerySlice.actions;
+export const { increment, decrement, setImageLoaded, setImageSource, setSelectedItem } = gallerySlice.actions;
 // ------------------------------------------------------------------------------------------
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectGallery = (state) => state.gallery.value;
+export const selectIndex = (state) => state.gallery.itemIndex;
 export const selectImgList = (state) => state.gallery.imageList;
 export const selectImgSrc = (state) => state.gallery.imageSrc;
 export const selectStatus = (state) => state.gallery.status;
