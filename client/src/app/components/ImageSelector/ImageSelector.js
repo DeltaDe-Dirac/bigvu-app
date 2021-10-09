@@ -1,12 +1,12 @@
 import "./ImageSelector.scss";
-import React, { useState } from "react";
+import React, { useCallback } from "react";
+import { debounce } from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { setImageSource, selectIndex, setSelectedItem, setUserText } from "../../../features/gallery/gallerySlice";
 import { InputGroup, DropdownButton, Dropdown, FormControl } from "react-bootstrap";
 
 const ImageSelector = ({ itemList }) => {
   const dispatch = useDispatch();
-  const [textInput, setTextInput] = useState("");
   const selectedItem = useSelector(selectIndex);
   const placeHolder = "Type your text here";
 
@@ -25,11 +25,11 @@ const ImageSelector = ({ itemList }) => {
     }
   };
 
-  const handleUserInput = (e) => {
-    const text = e.target.value;
-    setTextInput(text);
-    dispatch(setUserText(text));
-  };
+  const memoizedCallback = useCallback(
+    debounce((e) => {
+      dispatch(setUserText(e.target.value));
+    }, 300)
+  );
   // --------------- FUNCTOINS ---------------
 
   // --------------- DOCUMENT ---------------
@@ -52,7 +52,7 @@ const ImageSelector = ({ itemList }) => {
             </Dropdown.Item>
           ))}
         </DropdownButton>
-        <FormControl onChange={(e) => handleUserInput(e)} value={textInput} placeholder={placeHolder} />
+        <FormControl onChange={(e) => memoizedCallback(e)} placeholder={placeHolder} />
       </InputGroup>
     </>
   );
