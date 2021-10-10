@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const getImageListAsync = createAsyncThunk("gallery/fetchImageList", async (endpoint) => {
-  const res = await fetch("/test", {
+  const res = await fetch("/callExApi", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
