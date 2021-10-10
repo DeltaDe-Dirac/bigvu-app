@@ -11,15 +11,15 @@ Prerequisites:
 2. npm and yarn
 
 Installation on Windows:
-1. Run at the project root directory
+1. Run at the project root directory:
 
 ### `npm install`
 
-2. Run at the client directory
+2. Change directory to client and run:
 
-### `cd client && yarn install`
+### `yarn install`
 
-3. Run the app in the development mode<br />
+3. Run the app in the development mode (root)
 
 ### `npm run cstart`
 Open [http://localhost:3000/white](http://localhost:3000/white) to view it in the browser.
