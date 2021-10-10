@@ -62,9 +62,9 @@ const ImageDisplayer = ({ src, width, height, borderWidth, frameColor }) => {
       const linesArr = [];
 
       wordsArr.forEach((word) => {
-        if (ctx.measureText(line + word + " ").width < metrics.sx) {
+        if (ctx.measureText(line + word + " ").width < metrics.sx + 15) {
           line += word + " ";
-        } else if (ctx.measureText(word).width < metrics.sx) {
+        } else if (ctx.measureText(word).width < metrics.sx + 15) {
           linesArr.push(line);
           line = word + " ";
         }
