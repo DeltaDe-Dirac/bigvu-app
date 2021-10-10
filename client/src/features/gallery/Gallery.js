@@ -10,7 +10,7 @@ export function Gallery({ frameColor }) {
   const imageList = useSelector(selectImgList);
   const imageSource = useSelector(selectImgSrc);
   const dispatch = useDispatch();
-  const metrics = { imgWidth: 640, imgHeight: 360, imgOffsetX: 10, imgOffsetY: 10 };
+  const metrics = { imgWidth: 620, imgHeight: 340, borderWidth: 10 };
 
   useEffect(() => {
     dispatch(getImageListAsync("https://bigvu-interviews-assets.s3.amazonaws.com/presenters.json"));
@@ -24,8 +24,7 @@ export function Gallery({ frameColor }) {
         src={imageSource}
         width={metrics.imgWidth}
         height={metrics.imgHeight}
-        imgOffsetX={metrics.imgOffsetX}
-        imgOffsetY={metrics.imgOffsetY}
+        borderWidth={metrics.borderWidth}
         frameColor={frameColor}
       ></ImageDisplayer>
     </>
