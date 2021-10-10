@@ -1,21 +1,19 @@
-.displayNone{
-    display: none;    
-}
-
-.displayTransparent{
+.blueTransparent{
   opacity: 20%;
   // border: 1px solid #d3d3d3; 
   background-color: deepskyblue;
-  background-color: whitesmoke;
-  // position: relative;
 }
 
-.displayBlueCanvas{
-  // border: 1px solid #d3d3d3; 
-  background-color: deepskyblue;
+.whiteTransparent{
+  opacity: 20%;
   background-color: whitesmoke;
-  // position: relative;
-  // right: 30%;
+}
+
+.blueCanvas{
+  background-color: deepskyblue;
+}
+.whiteCanvas{
+  background-color: whitesmoke;
 }
 
 .loader {

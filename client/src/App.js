@@ -6,7 +6,7 @@ import { Gallery } from "./features/gallery/Gallery";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PageNotFound from "./app/components/PageNotFound/PageNotFound";
 
-console.log("url", process.env.PUBLIC_URL);
+// console.log("url", process.env.PUBLIC_URL);
 
 function App() {
   return (
@@ -15,7 +15,14 @@ function App() {
         <Route exact path="/white">
           <div className="App">
             <Container>
-              <Gallery></Gallery>
+              <Gallery frameColor="white"></Gallery>
+            </Container>
+          </div>
+        </Route>
+        <Route exact path="/blue">
+          <div className="App">
+            <Container>
+              <Gallery frameColor="blue"></Gallery>
             </Container>
           </div>
         </Route>

@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setImageLoaded, selectStatus, selectIndex, selectUserText } from "../../../features/gallery/gallerySlice";
 
-const ImageDisplayer = ({ src, width, height, imgOffsetX, imgOffsetY }) => {
+const ImageDisplayer = ({ src, width, height, imgOffsetX, imgOffsetY, frameColor }) => {
   // console.log(src);
   const canvasRef = useRef();
   const dispatch = useDispatch();
@@ -65,7 +65,13 @@ const ImageDisplayer = ({ src, width, height, imgOffsetX, imgOffsetY }) => {
         <canvas
           ref={canvasRef}
           className={
-            imageStatus === "loading" || selectedItem === -1 ? styles.displayTransparent : styles.displayBlueCanvas
+            imageStatus === "loading" || selectedItem === -1
+              ? frameColor === "blue"
+                ? styles.blueTransparent
+                : styles.whiteTransparent
+              : frameColor === "blue"
+              ? styles.blueCanvas
+              : styles.whiteCanvas
           }
           width={width}
           height={height}

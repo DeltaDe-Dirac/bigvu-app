@@ -6,7 +6,7 @@ import NavTab from "../../app/components/NavTab/NavTab";
 import ImageSelector from "../../app/components/ImageSelector/ImageSelector";
 import ImageDisplayer from "../../app/components/ImageDisplayer/ImageDisplayer";
 
-export function Gallery() {
+export function Gallery({ frameColor }) {
   const imageList = useSelector(selectImgList);
   const imageSource = useSelector(selectImgSrc);
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export function Gallery() {
 
   return (
     <>
-      <NavTab></NavTab>
+      <NavTab frameColor={frameColor}></NavTab>
       <ImageSelector itemList={imageList}></ImageSelector>
       <ImageDisplayer
         src={imageSource}
@@ -26,6 +26,7 @@ export function Gallery() {
         height={metrics.imgHeight}
         imgOffsetX={metrics.imgOffsetX}
         imgOffsetY={metrics.imgOffsetY}
+        frameColor={frameColor}
       ></ImageDisplayer>
     </>
   );
