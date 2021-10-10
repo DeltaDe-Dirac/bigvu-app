@@ -39,7 +39,7 @@ const ImageDisplayer = ({ src, width, height, borderWidth, frameColor }) => {
       yStretch: height + 2 * borderWidth,
     };
 
-    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    ctx.clearRect(metrics.sWidth - metrics.sx, 0, canvasRef.current.width, canvasRef.current.height);
 
     const image = new Image();
     image.src = src;
@@ -59,8 +59,8 @@ const ImageDisplayer = ({ src, width, height, borderWidth, frameColor }) => {
       ctx.font = "bold 40px Verdana, sans-serif";
       const wordsArr = inputText.split(" ");
       let line = "";
-
       const linesArr = [];
+
       wordsArr.forEach((word) => {
         if (ctx.measureText(line + word + " ").width < metrics.sx) {
           line += word + " ";
