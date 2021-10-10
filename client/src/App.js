@@ -1,12 +1,9 @@
 import React from "react";
 import "./App.scss";
 import Container from "react-bootstrap/Container";
-// import { Counter } from "./features/counter/Counter";
 import { Gallery } from "./features/gallery/Gallery";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PageNotFound from "./app/components/PageNotFound/PageNotFound";
-
-// console.log("url", process.env.PUBLIC_URL);
 
 function App() {
   return (
